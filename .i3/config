@@ -34,7 +34,8 @@ new_window 1pixel
 new_float 1pixel
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt -e tmux
 
 # start a web browser
 bindsym $mod+space exec firefox
