@@ -5,7 +5,7 @@
 
 # Activate screen locker
 xss-lock -- i3lock &
-xautolock -time 8 -locker "i3lock" &
+xautolock -time 10 -locker "i3lock" &
 
 # Activate numlock
 numlockx &
@@ -16,3 +16,5 @@ urxvtd -q -f -o
 # Start i3 window manager
 exec i3
 
+# Hide mouse cursor when not used
+unclutter &

@@ -36,18 +36,6 @@ setopt AUTO_CD
 # Share history among sessions
 setopt append_history share_history
 
-# Set up dirstack options
-DIRSTACKFILE="$HOME/.cache/zsh/dirs"
-if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
-  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-  [[ -d $dirstack[1] ]] && cd $dirstack[1]
-fi
-chpwd() {
-  print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-}
-
-DIRSTACKSIZE=20
-
 setopt autopushd pushdsilent pushdtohome
 
 ## Remove duplicate entries
@@ -57,23 +45,35 @@ setopt pushdignoredups
 setopt pushdminus
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Set path
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# vi mode
+bindkey -v
+
 # set editor to vim
 export EDITOR='vim'
 
-# vi mode
-bindkey -v
+# set delay time for mode switch
+export KEYTIMEOUT=1
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# shortcut to insert sudo before command
+sudo-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    [[ $BUFFER != sudo\ * ]] && LBUFFER="sudo $LBUFFER"
+}
+zle -N sudo-command-line
+# Defined shortcut keys: [Esc] [Esc]
+bindkey -M vicmd 's' sudo-command-line
 
 # History search key bindings
 
@@ -88,6 +88,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 # Aliases
 alias zshrc=". ~/.zshrc"
+alias tmuxconf="tmux source-file ~/.tmux.conf"
 
 # load zgen
 source "${HOME}/Code/zgen/zgen.zsh"
@@ -96,14 +97,14 @@ source "${HOME}/Code/zgen/zgen.zsh"
 if ! zgen saved; then
     echo "Creating a zgen save"
 
-    zgen oh-my-zsh
+    # zgen oh-my-zsh
 
     # plugins
     zgen oh-my-zsh plugins/git
     zgen oh-my-zsh plugins/pip
     zgen oh-my-zsh plugins/dirhistory
     zgen load zsh-users/zsh-syntax-highlighting
-    zgen load zsh-users/zsh-history-substring-search.git
+    zgen load zsh-users/zsh-history-substring-search
 
     # completions
     zgen load zsh-users/zsh-completions src
@@ -117,3 +118,22 @@ fi
 
 # Set pure prompt
 prompt pure
+
+# Leave the following at end of file so it doesn't record
+# dir movement while executing .zshrc
+
+# Set up dirstack options
+DIRSTACKFILE="$HOME/.cache/zsh/dirs"
+if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+  [[ -d $dirstack[1] ]] && cd $dirstack[1]
+fi
+chpwd() {
+  print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
+}
+
+DIRSTACKSIZE=20
+
+# return to home dir
+cd /home/dave
+
