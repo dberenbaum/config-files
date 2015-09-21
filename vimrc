@@ -41,6 +41,9 @@ Plugin 'tmhedberg/matchit.git'
 Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'tpope/vim-repeat.git'
 Plugin 'sjl/gundo.vim.git'
+Plugin 'Valloric/YouCompleteMe.git'
+Plugin 'vim-scripts/dbext.vim.git'
+" Plugin 'klen/python-mode.git'
 
 call vundle#end()
 filetype plugin indent on     " required
@@ -218,3 +221,8 @@ let NERDTreeIgnore = ['\.pyc$']
 """"""""""""""""""""""""""""""
 set swapfile
 set dir=/tmp
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => dbext database configurations
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:dbext_default_profile_nfldb = 'type=PGSQL:user=postgres:dbname=nfldb'

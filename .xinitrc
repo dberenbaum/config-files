@@ -3,18 +3,15 @@
 # Load Xresources file
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-# Activate screen locker
-xss-lock -- i3lock &
-xautolock -time 10 -locker "i3lock" &
+# Disable touchpad while typing
+syndaemon -d -k -t -i 1 &
 
-# Activate numlock
-numlockx &
+# enable xscreensaver
+exec /usr/bin/xscreensaver -no-splash &
 
-# Start urxvt daemon 
-urxvtd -q -f -o
+# auto lock screen
+exec xss-lock -- xscreeensaver-command -lock &
 
 # Start i3 window manager
 exec i3
 
-# Hide mouse cursor when not used
-unclutter &

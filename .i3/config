@@ -242,17 +242,20 @@ bar {
   }
 }
 
-# startup applications
-exec --no-startup-id i3-msg 'workspace 2; exec firefox; workspace 1; exec urxvt -e tmux'
-
 # start compton for compositing
 exec compton -b
 
 # shut off monitor after 10 min
 exec --no-startup-id xset dpms 600
 
+# Hide mouse cursor when not used
+exec unclutter
+
+# startup applications
+exec --no-startup-id i3-msg 'workspace 2; exec frefox; workspace 1; exec urxvt -e tmux'
+
 # shutdown prompt
-set $Locker i3lock && sleep 1
+set $Locker xscreensaver-command -lock && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {

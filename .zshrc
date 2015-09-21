@@ -66,6 +66,10 @@ export KEYTIMEOUT=1
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
+
 # shortcut to insert sudo before command
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
@@ -85,10 +89,6 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 # bind k and j for VI mode
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-
-# Aliases
-alias zshrc=". ~/.zshrc"
-alias tmuxconf="tmux source-file ~/.tmux.conf"
 
 # load zgen
 source "${HOME}/Code/zgen/zgen.zsh"
@@ -137,3 +137,8 @@ DIRSTACKSIZE=20
 # return to home dir
 cd /home/dave
 
+# Aliases
+alias zshrc=". ~/.zshrc"
+alias tmuxconf="tmux source-file ~/.tmux.conf"
+alias rpi="ssh root@192.168.8.104 -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
+alias music="ncmpcpp"

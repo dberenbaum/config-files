@@ -10,3 +10,7 @@
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
+
+# virtualenvwrapper
+export WROKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
