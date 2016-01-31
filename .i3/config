@@ -47,7 +47,7 @@ bindsym XF86MonBrightnessUp exec xbacklight +5
 bindsym $mod+Return exec urxvt -e tmux
 
 # start a web browser
-bindsym $mod+space exec firefox
+bindsym $mod+space exec google-chrome-stable
 
 # kill focused window
 bindsym $mod+q kill
@@ -225,7 +225,7 @@ set $background #073642
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  status_command i3status | ~/Code/i3-weather/weather.py --wrap-i3-status --position=-1 2514815
+  status_command i3status
   colors {
     background $background
     statusline $color08

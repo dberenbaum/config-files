@@ -15,23 +15,20 @@ runtime! archlinux.vim
 " and configure vim to your own liking!
 
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=/etc/vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep bundle commands between here and filetype plugin indent on.
 " scripts on GitHub repos
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'kien/ctrlp.vim.git'
 Plugin 'tpope/vim-surround.git'
-Plugin 'msanders/snipmate.vim.git'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'corntrace/bufexplorer.git'
@@ -41,9 +38,10 @@ Plugin 'tmhedberg/matchit.git'
 Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'tpope/vim-repeat.git'
 Plugin 'sjl/gundo.vim.git'
-Plugin 'Valloric/YouCompleteMe.git'
 Plugin 'vim-scripts/dbext.vim.git'
-" Plugin 'klen/python-mode.git'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'klen/python-mode.git'
+Plugin 'kien/ctrlp.vim.git'
 
 call vundle#end()
 filetype plugin indent on     " required
@@ -65,12 +63,6 @@ filetype plugin indent on     " required
 "if has("autocmd")
 "  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 "endif
-
-" Uncomment the following to have Vim load indentation rules and plugins
-" according to the detected filetype.
-if has("autocmd")
-  filetype plugin indent on
-endif
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
@@ -105,9 +97,6 @@ inoremap jk <esc>
 " Toggle hlsearch 
 noremap <leader><space> :nohlsearch<CR>
 
-" comma-w navigates windows
-map <leader>w <C-w>
-
 " set leader-j and leader-l to beginning and end of line
 nnoremap <leader>h <Home>
 nnoremap <leader>l <End>
@@ -115,18 +104,10 @@ nnoremap <leader>l <End>
 " set leader-g to Gundo
 nnoremap <leader>g :GundoToggle<CR>
 
-"""""""""""""""""""""""""""""""""""""
-" => CtrlP options
-"""""""""""""""""""""""""""""""""""""
+nnoremap <space> :
 
-" Ctrl-P buffer
-noremap <leader>p :CtrlPBuffer<CR>
-
-" Disable Ctrl-P from using current working diretcory for search
-let g:ctrlp_working_path_mode = 0
-
-" Use ag with CtrlP
-let g:ctrlp_user_command = 'ag %s -l -g ""'
+" windows
+nnoremap <leader>w <C-w>
 
 """""""""""""""""""""""""""""""""""""
 " => Search options

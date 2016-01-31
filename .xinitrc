@@ -12,6 +12,9 @@ exec /usr/bin/xscreensaver -no-splash &
 # auto lock screen
 exec xss-lock -- xscreeensaver-command -lock &
 
+# key mappings
+xmodmap ~/.xmodmap
+
 # Start i3 window manager
 exec i3
 

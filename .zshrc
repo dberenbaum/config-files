@@ -137,8 +137,12 @@ DIRSTACKSIZE=20
 # return to home dir
 cd /home/dave
 
+# virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
+
 # Aliases
 alias zshrc=". ~/.zshrc"
 alias tmuxconf="tmux source-file ~/.tmux.conf"
-alias rpi="ssh root@192.168.8.104 -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
+alias rpi="ssh 192.168.1.160 -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
 alias music="ncmpcpp"
