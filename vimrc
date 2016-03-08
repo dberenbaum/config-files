@@ -202,8 +202,3 @@ let NERDTreeIgnore = ['\.pyc$']
 """"""""""""""""""""""""""""""
 set swapfile
 set dir=/tmp
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => dbext database configurations
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:dbext_default_profile_nfldb = 'type=PGSQL:user=postgres:dbname=nfldb'
