@@ -109,12 +109,23 @@ nnoremap <space> :
 " windows
 nnoremap <leader>w <C-w>
 
+" copy and paste
+vmap <Leader>y "+y
+nmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
 """""""""""""""""""""""""""""""""""""
 " => Search options
 """"""""""""""""""""""""""""""""""""""
 
 " Turn on the WiLd menu
 set wildmenu
+set wildmode=list:full
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc,*/tmp/*,*.so,*.swp,*.zip
@@ -160,6 +171,8 @@ set tabstop=4
 set ai "Auto indent
 set si "Smart indent
 
+set backspace=indent,eol,start
+
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
@@ -196,6 +209,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <leader>n :NERDTreeToggle<CR>
 
 let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeQuitOnOpen=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Swap files
