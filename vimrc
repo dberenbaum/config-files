@@ -84,10 +84,6 @@ endif
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Remap leader h,l to first and last non-blank character
-map <leader>h ^
-map <leader>l $
-
 " Set comma as leader
 let mapleader=","
 
@@ -97,7 +93,7 @@ inoremap jk <esc>
 " Toggle hlsearch 
 noremap <leader><space> :nohlsearch<CR>
 
-" set leader-j and leader-l to beginning and end of line
+" set leader-h and leader-l to beginning and end of line
 nnoremap <leader>h <Home>
 nnoremap <leader>l <End>
 
