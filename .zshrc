@@ -1,6 +1,6 @@
 # Set PATH
 typeset -U path
-path=(~/bin /other/things/in/path $path)
+path=(~/bin $path)
 
 # Set function path
 fpath=( "$HOME/.zfunctions" $fpath )
@@ -17,10 +17,6 @@ setopt completealiases
 
 # Ignore duplicates in history
 setopt HIST_IGNORE_DUPS
-
-# History search
-[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
-[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
 # Autoload prompt
 autoload -U promptinit
@@ -49,19 +45,19 @@ ENABLE_CORRECTION="true"
 
 # Set path
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # vi mode
 bindkey -v
+bindkey -M viins 'jk' vi-cmd-mode
+
+bindkey -M vicmd ',h' beginning-of-line
+bindkey -M vicmd ',l' end-of-line
 
 # set editor to vim
 export EDITOR='vim'
 
 # set delay time for mode switch
-export KEYTIMEOUT=1
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export KEYTIMEOUT=10
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -76,15 +72,14 @@ sudo-command-line() {
     [[ $BUFFER != sudo\ * ]] && LBUFFER="sudo $LBUFFER"
 }
 zle -N sudo-command-line
-# Defined shortcut keys: [Esc] [Esc]
 bindkey -M vicmd 's' sudo-command-line
 
 # History search key bindings
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
 
 # bind k and j for VI mode
 bindkey -M vicmd 'k' history-substring-search-up
@@ -100,20 +95,19 @@ if ! zgen saved; then
     # zgen oh-my-zsh
 
     # plugins
-    zgen oh-my-zsh plugins/git
     zgen oh-my-zsh plugins/pip
-    zgen oh-my-zsh plugins/dirhistory
+    zgen oh-my-zsh plugins/virtualenvwrapper
     zgen load zsh-users/zsh-syntax-highlighting
     zgen load zsh-users/zsh-history-substring-search
+    zgen load zsh-users/zsh-autosuggestions
 
     # completions
     zgen load zsh-users/zsh-completions src
 
-    # theme
-    # zgen oh-my-zsh themes/arrow
-
     # save all to init script
     zgen save
+
+    echo "Created zgen save"
 fi
 
 # Set pure prompt
@@ -132,7 +126,7 @@ chpwd() {
   print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
 }
 
-DIRSTACKSIZE=20
+DIRSTACKSIZE=10
 
 # return to home dir
 cd /home/dave
@@ -142,7 +136,6 @@ export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 
 # Aliases
-alias zshrc=". ~/.zshrc"
 alias tmuxconf="tmux source-file ~/.tmux.conf"
 alias rpi="ssh 192.168.1.160 -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
 alias music="ncmpcpp"
