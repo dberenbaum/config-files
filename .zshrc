@@ -12,6 +12,10 @@ compinit
 # Arrow-style autocompletion
 zstyle ':completion:*' menu select
 
+# Shift-Tab
+zmodload zsh/complist
+bindkey -M menuselect "^[[Z" reverse-menu-complete
+
 # Complete command line switches for aliases
 setopt completealiases
 
