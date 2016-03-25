@@ -1,0 +1,18 @@
+set editing-mode vi
+
+set show-all-if-ambiguous on
+set completion-ignore-case on
+
+set keymap vi-command
+",h": beginning-of-line
+",l": end-of-line
+"k": history-search-backward
+"j": history-search-forward
+
+set keymap vi-insert
+"jk": vi-movement-mode
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+C-j: menu-complete
+C-k: menu-complete-backward

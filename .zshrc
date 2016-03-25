@@ -59,13 +59,6 @@ export EDITOR='vim'
 # set delay time for mode switch
 export KEYTIMEOUT=10
 
-# ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# virtualenvwrapper
-export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
-
 # shortcut to insert sudo before command
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
@@ -77,7 +70,6 @@ bindkey -M vicmd 's' sudo-command-line
 # History search key bindings
 
 # bind UP and DOWN arrow keys
-zmodload zsh/terminfo
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
@@ -95,8 +87,6 @@ if ! zgen saved; then
     # zgen oh-my-zsh
 
     # plugins
-    zgen oh-my-zsh plugins/pip
-    zgen oh-my-zsh plugins/virtualenvwrapper
     zgen load zsh-users/zsh-syntax-highlighting
     zgen load zsh-users/zsh-history-substring-search
     zgen load zsh-users/zsh-autosuggestions
@@ -129,13 +119,4 @@ chpwd() {
 DIRSTACKSIZE=10
 
 # return to home dir
-cd /home/dave
-
-# virtualenvwrapper
-export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
-
-# Aliases
-alias tmuxconf="tmux source-file ~/.tmux.conf"
-alias rpi="ssh 192.168.1.160 -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
-alias music="ncmpcpp"
+cd ~
