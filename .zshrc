@@ -1,6 +1,6 @@
 # Set PATH
 typeset -U path
-path=(~/bin $path)
+path=($HOME ~/bin /usr/local/bin $path)
 
 # Set function path
 fpath=( "$HOME/.zfunctions" $fpath )
@@ -16,9 +16,6 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 bindkey -M menuselect "^[[Z" reverse-menu-complete
 
-# Complete command line switches for aliases
-setopt completealiases
-
 # Ignore duplicates in history
 setopt HIST_IGNORE_DUPS
 
@@ -26,7 +23,7 @@ setopt HIST_IGNORE_DUPS
 autoload -U promptinit
 promptinit
 
-# Auto rehash to find new executables
+# Don't hash dirs or commands - avoids need to rehash for new dirs/cmds
 setopt nohashdirs
 setopt nohashcmds
 
@@ -36,19 +33,11 @@ setopt AUTO_CD
 # Share history among sessions
 setopt append_history share_history
 
-setopt autopushd pushdsilent pushdtohome
-
-## Remove duplicate entries
-setopt pushdignoredups
-
-## This reverts the +/- operators.
-setopt pushdminus
+# Pushd options (always use for cd)
+setopt autopushd pushdsilent pushdtohome pushdignoredups pushdminus
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
-
-# Set path
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # vi mode
 bindkey -v
@@ -120,7 +109,7 @@ chpwd() {
   print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
 }
 
-DIRSTACKSIZE=10
+DIRSTACKSIZE=20
 
 # return to home dir
 cd ~
