@@ -41,7 +41,7 @@ Plugin 'sjl/gundo.vim.git'
 Plugin 'vim-scripts/dbext.vim.git'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'klen/python-mode.git'
-Plugin 'kien/ctrlp.vim.git'
+Plugin 'Valloric/MatchTagAlways.git'
 
 call vundle#end()
 filetype plugin indent on     " required
@@ -212,3 +212,9 @@ let NERDTreeQuitOnOpen=1
 """"""""""""""""""""""""""""""
 set swapfile
 set dir=/tmp
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Pymode options
+""""""""""""""""""""""""""""""
+let g:pymode_rope = 0
+set nofoldenable

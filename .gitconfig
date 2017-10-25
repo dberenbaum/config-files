@@ -1,0 +1,7 @@
+[user]
+	email = david_berenbaum@brown.edu
+	name = Dave Berenbaum
+[core]
+	excludefiles = /Users/dberenba/Code/config-files/.gitignore_global
+[push]
+	default = simple
