@@ -27,21 +27,21 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep bundle commands between here and filetype plugin indent on.
 " scripts on GitHub repos
 Plugin 'tpope/vim-fugitive'
-Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-surround.git'
-Plugin 'scrooloose/syntastic.git'
+"Plugin 'scrooloose/syntastic.git'
 Plugin 'scrooloose/nerdtree.git'
-Plugin 'corntrace/bufexplorer.git'
-Plugin 'rking/ag.vim'
+"Plugin 'corntrace/bufexplorer.git'
+"Plugin 'rking/ag.vim'
 Plugin 'tomtom/tcomment_vim.git'
 Plugin 'tmhedberg/matchit.git'
 Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'tpope/vim-repeat.git'
 Plugin 'sjl/gundo.vim.git'
-Plugin 'vim-scripts/dbext.vim.git'
+"Plugin 'vim-scripts/dbext.vim.git'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'klen/python-mode.git'
-Plugin 'Valloric/MatchTagAlways.git'
+"Plugin 'kien/ctrlp.vim.git'
+Plugin 'w0rp/ale'
 
 call vundle#end()
 filetype plugin indent on     " required
@@ -92,6 +92,9 @@ inoremap jk <esc>
 
 " Toggle hlsearch 
 noremap <leader><space> :nohlsearch<CR>
+
+" set path
+set path+=**
 
 " set leader-h and leader-l to beginning and end of line
 nnoremap <leader>h <Home>
@@ -151,8 +154,12 @@ set ffs=unix,dos,mac
 set relativenumber 
 set number
 
-" Break lines at 78 chars
-set tw=78
+" Break lines
+set tw=79
+
+" location list
+nnoremap <leader>o :lopen<CR>
+nnoremap <leader>c :lclose<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -193,6 +200,8 @@ set statusline+=\ \ Line:\
 set statusline+=%l " Current line
 set statusline+=/ " Separator
 set statusline+=%L " Total lines"
+set statusline+=/ " Separator
+
 "
 """"""""""""""""""
 
@@ -214,7 +223,13 @@ set swapfile
 set dir=/tmp
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Pymode options
+" => ALE
 """"""""""""""""""""""""""""""
-let g:pymode_rope = 0
-set nofoldenable
+let g:ale_linters = {
+\   'python': ['pylint', 'pycodestyle'],
+\}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Help
+""""""""""""""""""""""""""""""
+nnoremap <buffer> <CR> <C-]>
+nnoremap <buffer> <BS> <C-T>
