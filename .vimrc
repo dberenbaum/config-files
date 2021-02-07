@@ -1,5 +1,19 @@
 set nocompatible              " be iMproved, required
 
+" set the runtime path to include Vundle and initialize
+call plug#begin('~/vim/plugged')
+
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdtree'
+Plug 'tomtom/tcomment_vim'
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-repeat'
+Plug 'sjl/gundo.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'w0rp/ale'
+
+call plug#end()
+
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 "if has("autocmd")
@@ -16,11 +30,6 @@ set incsearch		" Incremental search
 set autowrite		" Automatically save before commands like :next and :make
 set hidden             " Hide buffers when they are abandoned
 set mouse=a		" Enable mouse usage (all modes)
-
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -42,6 +51,9 @@ set path+=**
 nnoremap <leader>h <Home>
 nnoremap <leader>l <End>
 
+" set leader-g to Gundo
+nnoremap <leader>g :GundoToggle<CR>
+
 nnoremap <space> :
 
 " windows
@@ -59,7 +71,6 @@ vmap <Leader>P "+P
 
 " toggle paste mode
 nnoremap <leader>p :set invpaste<CR>
-
 
 """""""""""""""""""""""""""""""""""""
 " => Search options
@@ -80,6 +91,12 @@ set showmatch
 
 " Enable syntax highlighting
 syntax enable
+
+"let g:solarized_termtrans=1
+
+"set background=dark
+
+"colorscheme solarized
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -142,11 +159,28 @@ set statusline+=/ " Separator
 """"""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NERDTree options
+""""""""""""""""""""""""""""""
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+map <leader>n :NERDTreeToggle<CR>
+
+let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeQuitOnOpen=1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Swap files
 """"""""""""""""""""""""""""""
 set swapfile
 set dir=/tmp
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ALE
+""""""""""""""""""""""""""""""
+let g:ale_linters = {
+\   'python': ['pylint', 'pycodestyle'],
+\}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Help
 """"""""""""""""""""""""""""""
