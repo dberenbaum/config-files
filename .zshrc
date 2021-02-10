@@ -61,6 +61,16 @@ export EDITOR='vim'
 # set delay time for mode switch
 export KEYTIMEOUT=10
 
+# History search key bindings
+
+# bind UP and DOWN arrow keys
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+
+# bind k and j for VI mode
+bindkey -M vicmd 'k' history-beginning-search-backward
+bindkey -M vicmd 'j' history-beginning-search-forward
+
 # Set up dirstack options
 DIRSTACKFILE="$HOME/.cache/zsh/dirs"
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
