@@ -61,38 +61,6 @@ export EDITOR='vim'
 # set delay time for mode switch
 export KEYTIMEOUT=10
 
-## shortcut to insert sudo before command
-#sudo-command-line() {
-#    [[ -z $BUFFER ]] && zle up-history
-#    [[ $BUFFER != sudo\ * ]] && LBUFFER="sudo $LBUFFER"
-#}
-#zle -N sudo-command-line
-#bindkey -M vicmd 's' sudo-command-line
-#
-## load zgen
-#source "${HOME}/.zgen/zgen.zsh"
-#
-## check if there's no init script
-#if ! zgen saved; then
-#    echo "Creating a zgen save"
-#
-#    # plugins
-#    zgen load zsh-users/zsh-syntax-highlighting
-#    zgen load zsh-users/zsh-history-substring-search
-#    zgen load zsh-users/zsh-autosuggestions
-#
-#    # completions
-#    zgen load zsh-users/zsh-completions src
-#
-#    # save all to init script
-#    zgen save
-#
-#    echo "Created zgen save"
-#fi
-
-# Leave the following at end of file so it doesn't record
-# dir movement while executing .zshrc
-
 # Set up dirstack options
 DIRSTACKFILE="$HOME/.cache/zsh/dirs"
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
